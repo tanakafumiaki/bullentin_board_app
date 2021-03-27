@@ -4,13 +4,14 @@ import React from "react";
 
 interface Props {
     href: string
+    text: string
 }
 
-const BackLink: React.VFC<Props> = ({ href}) => {
+const PrimaryLink: React.VFC<Props> = ({ href, text }) => {
     return (
         <Link href={href}>
-            <p className={styles.backLink}>Back</p>
+            <p className={styles.PrimaryLink}>{text}</p>
         </Link>
     )
 }
-export default BackLink;
+export default PrimaryLink;
