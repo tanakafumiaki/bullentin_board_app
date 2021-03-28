@@ -2,14 +2,14 @@ import styles from './styles.module.sass';
 import React from "react";
 import { PrimaryLink } from "../../atoms";
 
-const BackLinkHeader: React.VFC = () => {
+const HomeHeader: React.VFC = () => {
     return (
-        <div className={styles.backLinkHeader}>
+        <div className={styles.homeHeader}>
             <PrimaryLink
-                href="/"
-                text="Back"
+                href="/post"
+                text="Post"
             />
         </div>
     )
 }
-export default BackLinkHeader;
+export default HomeHeader;
