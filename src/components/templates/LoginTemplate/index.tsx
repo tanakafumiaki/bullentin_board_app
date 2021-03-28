@@ -1,16 +1,16 @@
 import React from "react";
 import { PrimaryButton } from 'components/atoms'
-import { BackLinkHeader, SignUpEntryForms } from 'components/molecules'
+import { BackLinkHeader, LoginEntryForms } from 'components/molecules'
 
-const SignUpTemplate: React.VFC = () => {
+const LoginTemplate: React.VFC = () => {
     return (
         <div>
             <BackLinkHeader />
             <main>
-                <SignUpEntryForms />
+                <LoginEntryForms />
                 <PrimaryButton text="LOGIN" />
             </main>
         </div>
     )
 }
-export default SignUpTemplate;
+export default LoginTemplate;
