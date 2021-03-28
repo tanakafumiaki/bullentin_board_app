@@ -1,6 +1,6 @@
 import React from "react";
-import { CommentDisplay, CommentForm } from 'components/atoms'
-import { Header, ArticleDisplay } from 'components/molecules'
+import { CommentDisplay } from 'components/atoms'
+import { Header, ArticleDisplay, CommentForm } from 'components/molecules'
 
 const ArticleTemplate: React.VFC　= () => {
     return (

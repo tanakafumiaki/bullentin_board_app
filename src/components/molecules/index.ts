@@ -8,3 +8,4 @@ export { default as LoginEntryForms } from "./LoginEntryForm";
 export { default as HomeHeader } from "./HomeHeader";
 export { default as HomeArticleDisplays } from "./HomeArticleDisplays";
 export { default as HomeArticleDisplay } from "./HomeArticleDisplay";
+export { default as CommentForm } from "../molecules/CommentForm";
