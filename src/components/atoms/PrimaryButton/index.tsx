@@ -6,7 +6,11 @@ interface Props {
 }
 
 const PrimaryButton: React.VFC<Props> = ({ text }) => {
-  return <button className={styles.button}>{text}</button>;
+  return (
+      <div className={styles.wrapper}>
+        <button className={styles.button}>{text}</button>
+      </div>
+      )
 };
 
 export default PrimaryButton;
