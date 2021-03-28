@@ -1,4 +1,4 @@
-import styles from './style.module.sass';
+import styles from './styles.module.sass';
 import React from "react";
 import { PrimaryLink } from "../../atoms";
 
