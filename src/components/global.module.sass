@@ -2,3 +2,14 @@ $white: #FFFFFF
 $black: #000000
 $button_font: 'Oswald', sans-serif
 $gray: #808080
+
+/*MediaQuely*/
+$breakpoint: 1200px
+
+@mixin phone
+    @media (max-width: $breakpoint)
+        @content
+
+@mixin desktop
+    @media (min-width: $breakpoint)
+        @content
