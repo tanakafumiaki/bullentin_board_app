@@ -3,15 +3,17 @@ import styles from "./styles.module.sass";
 
 interface Props {
     text: string
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const EntryForm: React.VFC<Props> = ({ text }) => {
+const EntryForm: React.VFC<Props> = ({ text, onChange, value }) => {
     return (
         <div>
             <label className={styles.label}>
                 {text}
             </label>
-            <textarea className={styles.textarea}/>
+            <input className={styles.textarea} onChange={onChange} value={value}/>
         </div>
     )
 }

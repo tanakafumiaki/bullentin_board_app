@@ -3,12 +3,13 @@ import styles from "./styles.module.sass";
 
 interface Props {
   text: string;
+  onClick: () => void;
 }
 
-const PrimaryButton: React.VFC<Props> = ({ text }) => {
+const PrimaryButton: React.VFC<Props> = ({ text, onClick }) => {
   return (
       <div className={styles.wrapper}>
-        <button className={styles.button}>{text}</button>
+        <button className={styles.button} onClick={onClick}>{text}</button>
       </div>
       )
 };
