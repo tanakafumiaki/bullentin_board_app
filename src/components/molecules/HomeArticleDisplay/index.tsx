@@ -3,7 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 const HomeArticleDisplay = () => {
-    const [topicsData,changeArticle] = useState([])
+    type topicType = any;
+    const [topicsData,changeArticle] = useState<topicType>([])
 
     useEffect(()=>{
         console.log("fetch")
