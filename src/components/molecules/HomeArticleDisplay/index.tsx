@@ -1,33 +1,34 @@
 import styles from './styles.module.sass';
 import React from "react";
 import { useEffect, useState } from "react";
-import {any} from "prop-types";
+import Link from "next/link";
 
 const HomeArticleDisplay = () => {
     type topicType = any;
-    const [topicsData,changeArticle] = useState<topicType>([])
+    const [topicsData,changeArticles] = useState<topicType>([])
 
     useEffect(()=>{
-        console.log("fetch")
-        // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
-        // localで確認する場合は以下
-        const url = `http://localhost:3000/api/v1/topics`
-        fetch(url)
-            .then( res => res.json() )
-            .then( res => {
-                changeArticle(res);
-            })
+        (async () => {
+            // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
+            // localの場合は以下
+            const url = `http://localhost:3000/api/v1/topics`
+            const topicsData = await fetch(url)
+            const response = await topicsData.json()
+            return changeArticles(response)
+        })();
     },[])
 
     return (
         <div>
             {topicsData.map(
-                (topicsData: any) => {
+                (topicData: any) => {
                     return (
-                        <tr className={styles.textBox}>
-                            <td className={styles.articleWriter}>{topicsData.user_id}</td>
-                            <td className={styles.articleTitle}>{topicsData.title}</td>
-                        </tr>
+                        <Link as={`article/${topicData.id}`} href={`/article?id=${topicData.id}`}>
+                            <tr className={styles.textBox}>
+                                <td className={styles.articleWriter}>{topicData.user.name}</td>
+                                <td className={styles.articleTitle}>{topicData.title}</td>
+                            </tr>
+                        </Link>
                     )
                 }
             )}
