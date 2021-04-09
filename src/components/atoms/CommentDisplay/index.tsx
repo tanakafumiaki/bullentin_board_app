@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from "./styles.module.sass";
 import { useRouter } from "next/router";
-import {name} from "next/dist/telemetry/ci-info";
 
 const CommentDisplay = () => {
     const router = useRouter()

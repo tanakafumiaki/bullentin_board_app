@@ -2,11 +2,14 @@ import styles from './styles.module.sass';
 import React from "react";
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import {route} from "next/dist/next-server/server/router";
 
 const ArticleDisplay = () => {
     const router = useRouter()
     type topicType = any;
     const [topicData,changeArticle] = useState<topicType>([])
+
+    console.log(router.query.id);
 
     useEffect(()=>{
         (async () => {
@@ -28,14 +31,15 @@ const ArticleDisplay = () => {
         })();
     },[])
 
-    console.log("topicDataStart")
-    console.log(topicData)
-    // console.log(topicData.user.email)
+    // const topic = topicData;
+    // console.log("start");
+    // console.log(topic);
+    // console.log(topic.user.name);
 
     return (
         <div className={styles.textBox}>
             <h1 className={styles.articleTitle}>{topicData.title}</h1>
-            {/*<p className={styles.articleWriter}>{topicData.user.name}</p>*/}
+            {/*<p className={styles.articleWriter}>{topic.user.name}</p>*/}
             <p className={styles.articleWriter}>{topicData.user_id}</p>
             <p className={styles.articleDetail}>{topicData.text}</p>
         </div>
