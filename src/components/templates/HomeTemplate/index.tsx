@@ -1,12 +1,12 @@
 import React from "react";
-import { HomeHeader, HomeArticleDisplays } from 'components/molecules'
+import { HomeHeader, HomeArticleDisplay } from 'components/molecules'
 
 const HomeTemplate: React.VFC = () => {
     return (
         <div>
             <HomeHeader />
             <main>
-                <HomeArticleDisplays />
+                <HomeArticleDisplay />
             </main>
         </div>
     )
