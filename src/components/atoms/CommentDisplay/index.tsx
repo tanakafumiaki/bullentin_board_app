@@ -35,6 +35,8 @@ const CommentDisplay = () => {
     },[])
     const comments = commentsData.filter((item:any) => item.topic_id === topicsData.id)
 
+    // console.table(comments)
+
     return (
         <div>
             {comments.map(

@@ -23,7 +23,7 @@ const HomeArticleDisplay = () => {
             {topicsData.map(
                 (topicData: any) => {
                     return (
-                        <Link as={`article/${topicData.id}`} href={`/article?id=${topicData.id}`}>
+                        <Link href={`/article/${topicData.id}`}>
                             <tr className={styles.textBox}>
                                 <td className={styles.articleWriter}>{topicData.user.name}</td>
                                 <td className={styles.articleTitle}>{topicData.title}</td>
@@ -35,5 +35,4 @@ const HomeArticleDisplay = () => {
         </div>
     )
 }
-
 export default HomeArticleDisplay;
