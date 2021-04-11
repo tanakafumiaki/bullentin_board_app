@@ -12,7 +12,16 @@ const HomeArticleDisplay = () => {
             // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
             // localの場合は以下
             const url = `http://localhost:3000/api/v1/topics`
-            const topicsData = await fetch(url)
+            // const topicsData = await fetch(url)
+            //アクセストークンを取得しfecth実行
+            const token = sessionStorage.getItem('token');
+            const topicsData = await fetch(url,{
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            })
             const response = await topicsData.json()
             return changeArticles(response)
         })();
