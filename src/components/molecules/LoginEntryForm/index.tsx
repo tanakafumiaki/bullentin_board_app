@@ -14,8 +14,9 @@ const LoginEntryForms: React.VFC = () => {
                 password
             }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
+
             method: "POST"
         })
         if (response.status === 200) {
@@ -25,7 +26,6 @@ const LoginEntryForms: React.VFC = () => {
             alert("エラーが発生しました")
         }
     }
-
     return (
         <div className={styles.container}>
             <EntryForm text="Name" name={email} onChange={onChangeEmail} />
