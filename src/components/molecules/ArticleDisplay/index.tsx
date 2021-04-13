@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
-    // const topicId = `${router.query.id}`;
     const topicId = router.query.id;
     console.log(topicId);
     type topicType = any;
