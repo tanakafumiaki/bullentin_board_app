@@ -9,16 +9,19 @@ const HomeArticleDisplay = () => {
 
     useEffect(()=>{
         (async () => {
-            // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
+            const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
             // localの場合は以下
-            const url = `http://localhost:3000/api/v1/topics`
-            // const topicsData = await fetch(url)
+            // const url = `http://localhost:3000/api/v1/topics`
             //アクセストークンを取得しfecth実行
-            const token = sessionStorage.getItem('token');
+            const accessToken = sessionStorage.getItem('access-token');
+            const uid = sessionStorage.getItem('uid');
+            const client = sessionStorage.getItem('client')
             const topicsData = await fetch(url,{
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'access-token': `${accessToken}`,
+                    'uid': `${uid}`,
+                    'client': `${client}`,
                     'Content-Type': 'application/json',
                 },
             })
