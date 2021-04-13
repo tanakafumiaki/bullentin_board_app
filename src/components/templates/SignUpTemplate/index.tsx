@@ -8,7 +8,6 @@ const SignUpTemplate: React.VFC = () => {
             <BackLinkHeader />
             <main>
                 <SignUpEntryForms />
-                <PrimaryButton text="LOGIN" />
             </main>
         </div>
     )
