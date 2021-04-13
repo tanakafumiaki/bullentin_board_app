@@ -2,22 +2,12 @@ import React from "react";
 import { CommentDisplay } from 'components/atoms'
 import { Header, ArticleDisplay, CommentForm } from 'components/molecules'
 
-interface Props {
-    title: string
-    text: string
-    userName: string
-}
-
-const ArticleTemplate: React.VFC<Props>　= ({title, text, userName}) => {
+const ArticleTemplate: React.VFC　= () => {
     return (
         <div>
             <Header/>
             <main>
-                <ArticleDisplay
-                    title={`${title}`}
-                    text={`${text}`}
-                    userName={`${userName}`}
-                />
+                <ArticleDisplay/>
                 <CommentDisplay/>
                 <CommentForm/>
             </main>

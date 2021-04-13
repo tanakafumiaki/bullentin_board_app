@@ -14,18 +14,19 @@ const CommentDisplay = () => {
             // localの場合は以下
             const url = `http://localhost:3000/api/v1/topics/${topicId}`;
             //アクセストークンを取得しfecth実行
-            const accessToken = sessionStorage.getItem('access-token');
-            const uid = sessionStorage.getItem('uid');
-            const client = sessionStorage.getItem('client')
-            const topicsData = await fetch(url,{
-                method: 'GET',
-                headers: {
-                    'access-token': `${accessToken}`,
-                    'uid': `${uid}`,
-                    'client': `${client}`,
-                    'Content-Type': 'application/json',
-                },
-            })
+            // const accessToken = sessionStorage.getItem('access-token');
+            // const uid = sessionStorage.getItem('uid');
+            // const client = sessionStorage.getItem('client')
+            // const topicsData = await fetch(url,{
+            //     method: 'GET',
+            //     headers: {
+            //         'access-token': `${accessToken}`,
+            //         'uid': `${uid}`,
+            //         'client': `${client}`,
+            //         'Content-Type': 'application/json',
+            //     },
+            // })
+            const topicsData = await fetch(url);
             const response = await topicsData.json();
             return changeTopics(response);
         })();
@@ -38,24 +39,27 @@ const CommentDisplay = () => {
             // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
             // localで確認する場合は以下
             const url = `http://localhost:3000/api/v1/comments`;
-            //アクセストークンを取得しfecth実行
-            const accessToken = sessionStorage.getItem('access-token');
-            const uid = sessionStorage.getItem('uid');
-            const client = sessionStorage.getItem('client')
-            const commentsData = await fetch(url,{
-                method: 'GET',
-                headers: {
-                    'access-token': `${accessToken}`,
-                    'uid': `${uid}`,
-                    'client': `${client}`,
-                    'Content-Type': 'application/json',
-                },
-            })
+            // アクセストークンを取得しfecth実行
+            // const accessToken = sessionStorage.getItem('access-token');
+            // const uid = sessionStorage.getItem('uid');
+            // const client = sessionStorage.getItem('client')
+            // const commentsData = await fetch(url,{
+            //     method: 'GET',
+            //     headers: {
+            //         'access-token': `${accessToken}`,
+            //         'uid': `${uid}`,
+            //         'client': `${client}`,
+            //         'Content-Type': 'application/json',
+            //     },
+            // })
+            const commentsData = await fetch(url);
             const response = await commentsData.json();
             return changeComment(response);
         })();
     },[])
     const comments = commentsData.filter((item:any) => item.topic_id === topicsData.id)
+
+    // console.table(comments);
 
     return (
         <div>
