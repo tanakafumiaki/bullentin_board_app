@@ -9,9 +9,9 @@ const HomeArticleDisplay = () => {
 
     useEffect(()=>{
         (async () => {
-            const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
+            // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
             // localの場合は以下
-            // const url = `http://localhost:3000/api/v1/topics`
+            const url = `http://localhost:3000/api/v1/topics`
             //アクセストークンを取得しfecth実行
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
@@ -47,5 +47,4 @@ const HomeArticleDisplay = () => {
         </div>
     )
 }
-
 export default HomeArticleDisplay;
