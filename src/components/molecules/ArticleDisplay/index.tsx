@@ -33,7 +33,6 @@ const ArticleDisplay: React.VFC = () => {
                 },
             })
             const topicData = await topicsData.json();
-            console.log(topicData)
             return changeTopic(topicData);
         })();
     }},[id])

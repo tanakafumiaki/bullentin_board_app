@@ -18,8 +18,6 @@ const AddCommentForm: React.VFC = () => {
 
     const onClickComment = async () => {
         const topic_id = {id}.id
-        // console.log(topic_id);
-        // console.log(text);
         const accessToken = sessionStorage.getItem('access-token');
         const uid = sessionStorage.getItem('uid');
         const client = sessionStorage.getItem('client')
