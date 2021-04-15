@@ -1,9 +1,13 @@
 import React from "react";
 import styles from "./styles.module.sass";
 
-const AddButton = () => {
+interface Props {
+    onClick: () => void;
+}
+
+const AddButton: React.VFC<Props> = ({ onClick }) => {
     return (
-        <button className={styles.addButton}>Add</button>
+        <button className={styles.addButton} onClick={onClick}>Add</button>
     )
 }
 
