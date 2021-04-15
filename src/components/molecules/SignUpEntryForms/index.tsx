@@ -2,12 +2,14 @@ import React from "react";
 import { EntryForm, PrimaryButton } from "components/atoms";
 import styles from "./styles.module.sass";
 import { useInput } from "hooks";
+import { useRouter } from 'next/router';
 
 const SignUpEntryForms: React.VFC = () => {
     const [name, onChangeName] = useInput();
     const [email, onChangeEmail] = useInput();
     const [password, onChangePassword] = useInput();
     const [passwordConfirmaton, onChangePasswordConfirmation] = useInput();
+    const router = useRouter();
 
     const onClickSignUp = async () => {
         const response = await fetch("http://localhost:3000/api/v1/auth", {
@@ -26,8 +28,9 @@ const SignUpEntryForms: React.VFC = () => {
         if (response.status === 200) {
             const { data } = await response.json();
             console.log(data);
-            debugger;
+            router.push('/home');
         } else {
+            router.push('/signup');
             alert("エラーが発生しました")
         }
     }
