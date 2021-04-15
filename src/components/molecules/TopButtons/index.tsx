@@ -1,12 +1,12 @@
 import React from "react";
-import { PrimaryButton } from "components/atoms"
+import { SecondaryLink } from "components/atoms"
 import styles from "./styles.module.sass";
 
 const TopButtons: React.VFC = () => {
     return (
         <div className={styles.container}>
-            <PrimaryButton text="LOGIN" />
-            <PrimaryButton text="SIGN UP" />
+            <SecondaryLink text="LOGIN" href="/login"/>
+            <SecondaryLink text="SIGN UP" href="/signup"/>
         </div>
     );
 };
