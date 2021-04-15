@@ -6,3 +6,5 @@ export { default as CommentDisplay } from "./CommentDisplay";
 export { default as ArticleTitleDisplay } from "./ArticleTitleDisplay";
 export { default as AddButton } from "./AddButton";
 export { default as CommentForm } from "./CommentForm";
+export { default as TopicTextForm } from "./TopicTextForm";
+export { default as TitleForm } from "./TitleForm";
