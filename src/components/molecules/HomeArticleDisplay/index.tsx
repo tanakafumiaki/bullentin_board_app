@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const HomeArticleDisplay = () => {
     type topicType = any;
-    const [topicsData, changeArticles] = useState<topicType>([])
+    const [topicsData, changeArticles] = useState<topicType>()
 
     useEffect(() => {
         (async () => {
@@ -32,21 +32,32 @@ const HomeArticleDisplay = () => {
         })();
     }, [])
 
-    return (
-        <div>
-            {topicsData.map(
-                (topicData: any) => {
-                    return (
-                        <Link as={`article/${topicData.id}`} href={`/article?id=${topicData.id}`}>
-                            <tr className={styles.textBox}>
-                                <td className={styles.articleWriter}>{topicData.user.name}</td>
-                                <td className={styles.articleTitle}>{topicData.title}</td>
-                            </tr>
-                        </Link>
-                    )
-                }
-            )}
-        </div>
-    )
+    if(topicsData) {
+        return (
+            <div>
+                {topicsData.map(
+                    (topicData: any) => {
+                        return (
+                            <Link as={`article/${topicData.id}`} href={`/article?id=${topicData.id}`}>
+                                <tr className={styles.textBox}>
+                                    <td className={styles.articleWriter}>{topicData.user.name}</td>
+                                    <td className={styles.articleTitle}>{topicData.title}</td>
+                                </tr>
+                            </Link>
+                        )
+                    }
+                )}
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <tr className={styles.textBox}>
+                    <td className={styles.articleWriter}>Roading...</td>
+                    <td className={styles.articleTitle}>Roading...</td>
+                </tr>
+            </div>
+        )
+    }
 }
 export default HomeArticleDisplay;

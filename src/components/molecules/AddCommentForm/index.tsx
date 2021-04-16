@@ -34,10 +34,15 @@ const AddCommentForm: React.VFC = () => {
             },
             method: 'POST'
         })
+        if (response.status === 201) {
+            window.location.reload();
+        } else {
+            alert("エラーが発生しました")
+        };
     }
     return (
         <div className={styles.textBox}>
-            <p className={styles.user}>USER</p>
+            <p className={styles.user}>CommentForm</p>
             <AddButton onClick={onClickComment}/>
             <CommentForm comment={text} onChange={onChangeComment} />
         </div>

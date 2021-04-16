@@ -43,7 +43,7 @@ const LoginEntryForms: React.VFC = () => {
 
     return (
         <div className={styles.container}>
-            <EntryForm text="Name" name={email} onChange={onChangeEmail} />
+            <EntryForm text="Email" name={email} onChange={onChangeEmail} />
             <EntryForm text="Password" password={password} onChange={onChangePassword} />
             <PrimaryButton text="LOGIN" onClick={onClickLogin} />
         </div>
