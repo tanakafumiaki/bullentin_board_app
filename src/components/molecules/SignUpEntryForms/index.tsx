@@ -28,6 +28,12 @@ const SignUpEntryForms: React.VFC = () => {
         if (response.status === 200) {
             const { data } = await response.json();
             console.log(data);
+            const accessToken: any = response.headers.get("access-token");
+            const client: any = response.headers.get("client");
+            const uid: any = response.headers.get("uid");
+            sessionStorage.setItem('access-token', accessToken);
+            sessionStorage.setItem('client', client);
+            sessionStorage.setItem('uid', uid);
             router.push('/home');
         } else {
             router.push('/signup');
