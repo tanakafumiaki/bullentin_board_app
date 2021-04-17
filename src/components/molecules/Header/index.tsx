@@ -1,6 +1,7 @@
 import styles from './styles.module.sass';
 import React from "react";
 import { PrimaryLink } from "../../atoms";
+import { LogoutButton } from "../../molecules";
 
 const Header: React.VFC = () => {
     return (
@@ -13,6 +14,10 @@ const Header: React.VFC = () => {
             <PrimaryLink
                 href="/post"
                 text="Post"
+            />
+
+            <LogoutButton
+                text="Logout"
             />
         </div>
     )
