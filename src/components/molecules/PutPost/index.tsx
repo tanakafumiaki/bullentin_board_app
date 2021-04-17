@@ -9,8 +9,6 @@ const PutPost: React.VFC　= () => {
     const router = useRouter();
 
     const onClickTopic = async () => {
-        // console.log(title);
-        // console.log(text);
         const accessToken = sessionStorage.getItem('access-token');
         const uid = sessionStorage.getItem('uid');
         const client = sessionStorage.getItem('client')
@@ -27,7 +25,11 @@ const PutPost: React.VFC　= () => {
             },
             method: 'POST'
         })
-        router.push({pathname: '/home'})
+        if (response.status === 201) {
+            router.push({pathname: '/home'})
+        } else {
+            alert("エラーが発生しました")
+        };
     }
     return (
         <div>

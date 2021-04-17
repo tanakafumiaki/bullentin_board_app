@@ -23,7 +23,7 @@ const CommentDisplay = () => {
             // アクセストークンを取得しfecth実行
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
-            const client = sessionStorage.getItem('client')
+            const client = sessionStorage.getItem('client');
             const commentsData = await fetch(url,{
                 method: 'GET',
                 headers: {
@@ -32,26 +32,32 @@ const CommentDisplay = () => {
                     'client': `${client}`,
                     'Content-Type': 'application/json',
                 },
-            })
+            });
             const response = await commentsData.json();
             return changeComment(response);
         })();
     },[])
-    const comments = commentsData.filter((item:any) => item.topic_id === id)
+    const topiccomments = commentsData.filter((item:any) => item.topic_id === id)
 
-    return (
-        <div>
-            {comments.map(
-                (comment: any) => {
-                    return (
-                        <tr className={styles.textBox}>
-                            <td className={styles.username}>{comment.user.name}</td>
-                            <td className={styles.textarea}>{comment.text}</td>
-                        </tr>
-                    )
-                }
-            )}
-        </div>
-    )
+    if(topiccomments) {
+        return (
+            <div>
+                {topiccomments.map(
+                    (comment: any) => {
+                        return (
+                            <tr className={styles.textBox}>
+                                <td className={styles.username}>{comment.user.name}</td>
+                                <td className={styles.textarea}>{comment.text}</td>
+                            </tr>
+                        )
+                    }
+                )}
+            </div>
+        )
+    } else {
+        return (
+            <div></div>
+        )
+    }
 }
 export default CommentDisplay;
