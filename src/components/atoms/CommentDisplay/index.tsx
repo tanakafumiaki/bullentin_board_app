@@ -14,7 +14,7 @@ const CommentDisplay = () => {
     }, [router]);
 
     type commentType = any;
-    const [commentsData,changeComment] = useState<commentType>([]);
+    const [commentsData,changeComment] = useState<commentType>();
     useEffect(()=>{
         (async () => {
             // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
