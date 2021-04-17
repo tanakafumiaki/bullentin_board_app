@@ -10,3 +10,4 @@ export { default as HomeArticleDisplays } from "./HomeArticleDisplays";
 export { default as HomeArticleDisplay } from "./HomeArticleDisplay";
 export { default as CommentForm } from "./AddCommentForm";
 export { default as PutPost } from "./PutPost";
+export { default as LogoutButton } from "./LogoutButton";
