@@ -39,19 +39,33 @@ const CommentDisplay = () => {
     },[])
     const comments = commentsData.filter((item:any) => item.topic_id === id)
 
-    return (
-        <div>
-            {comments.map(
-                (comment: any) => {
-                    return (
-                        <tr className={styles.textBox}>
-                            <td className={styles.username}>{comment.user.name}</td>
-                            <td className={styles.textarea}>{comment.text}</td>
-                        </tr>
-                    )
-                }
-            )}
-        </div>
-    )
+
+    if(comments) {
+        return (
+            <div>
+                {comments.map(
+                    (comment: any) => {
+                        return (
+                            <tr className={styles.textBox}>
+                                <td className={styles.username}>{comment.user.name}</td>
+                                <td className={styles.textarea}>{comment.text}</td>
+                            </tr>
+                        )
+                    }
+                )}
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                return (
+                    <tr className={styles.textBox}>
+                        <td className={styles.username}></td>
+                        <td className={styles.textarea}></td>
+                    </tr>
+                )
+            </div>
+        )
+    }
 }
 export default CommentDisplay;
