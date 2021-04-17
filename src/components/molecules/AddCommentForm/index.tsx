@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import { AddButton, CommentForm } from "components/atoms";
 import styles from "./styles.module.sass";
 import { useInput } from "hooks";
@@ -17,7 +17,7 @@ const AddCommentForm: React.VFC = () => {
     }, [router]);
 
     const onClickComment = async () => {
-        const topic_id = {id}.id
+        const topic_id = { id }.id
         const accessToken = sessionStorage.getItem('access-token');
         const uid = sessionStorage.getItem('uid');
         const client = sessionStorage.getItem('client')
@@ -43,8 +43,8 @@ const AddCommentForm: React.VFC = () => {
     return (
         <div className={styles.textBox}>
             <p className={styles.user}>CommentForm</p>
-            <AddButton onClick={onClickComment}/>
-            <CommentForm comment={text} onChange={onChangeComment} />
+            <AddButton onClick={onClickComment} />
+            <CommentForm value={text} onChange={onChangeComment} />
         </div>
     );
 };
