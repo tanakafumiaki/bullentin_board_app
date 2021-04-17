@@ -44,10 +44,10 @@ const SignUpEntryForms: React.VFC = () => {
 
     return (
         <div className={styles.container}>
-            <EntryForm text="Name" name={name} onChange={onChangeName} />
-            <EntryForm text="Email" email={email} onChange={onChangeEmail} />
-            <EntryForm text="Password" password={password} onChange={onChangePassword} />
-            <EntryForm text="PasswordConfirmation" passwordConfirmaton={passwordConfirmaton} onChange={onChangePasswordConfirmation} />
+            <EntryForm text="Name" value={name} onChange={onChangeName} />
+            <EntryForm text="Email" value={email} onChange={onChangeEmail} />
+            <EntryForm text="Password" value={password} onChange={onChangePassword} />
+            <EntryForm text="PasswordConfirmation" value={passwordConfirmaton} onChange={onChangePasswordConfirmation} />
             <PrimaryButton text="SIGNUP" onClick={onClickSignUp} />
         </div>
     );
