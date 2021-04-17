@@ -17,8 +17,9 @@ const ArticleDisplay: React.VFC = () => {
 
     useEffect(()=>{
         if (id) {(async () => {
-            const url = `http://localhost:3000/api/v1/topics/${id}`
-            // const topicsData = await fetch(url);
+            const url = `https://bullentin-board-api.herokuapp.com/api/v1/topics/${id}`
+            // localで確認する場合は以下
+            // const url = `http://localhost:3000/api/v1/topics/${id}`
             //アクセストークンを取得しfecth実行
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');

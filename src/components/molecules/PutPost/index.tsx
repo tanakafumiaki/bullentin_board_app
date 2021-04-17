@@ -12,7 +12,9 @@ const PutPost: React.VFC　= () => {
         const accessToken = sessionStorage.getItem('access-token');
         const uid = sessionStorage.getItem('uid');
         const client = sessionStorage.getItem('client')
-        const response = await fetch("http://localhost:3000/api/v1/topics", {
+        // localで確認する場合は以下
+        // const response = await fetch("http://localhost:3000/api/v1/topics", {
+        const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/topics", {
             body: JSON.stringify({
                 title: title,
                 text: text
