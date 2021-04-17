@@ -60,8 +60,8 @@ const CommentDisplay = () => {
             <div>
                 return (
                     <tr className={styles.textBox}>
-                        <td className={styles.username}></td>
-                        <td className={styles.textarea}></td>
+                        <td className={styles.username}>Roading...</td>
+                        <td className={styles.textarea}>Roading...</td>
                     </tr>
                 )
             </div>
