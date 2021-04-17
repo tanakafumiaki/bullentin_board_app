@@ -33,8 +33,8 @@ const PutPost: React.VFC　= () => {
     }
     return (
         <div>
-            <TitleForm title= {title} onChange={onChangeTitle}/>
-            <TopicTextForm text={text} onChange={onChangeText}/>
+            <TitleForm value= {title} onChange={onChangeTitle}/>
+            <TopicTextForm value={text} onChange={onChangeText}/>
             <PrimaryButton text="POST" onClick={onClickTopic}/>
         </div>
     )
