@@ -21,7 +21,9 @@ const AddCommentForm: React.VFC = () => {
         const accessToken = sessionStorage.getItem('access-token');
         const uid = sessionStorage.getItem('uid');
         const client = sessionStorage.getItem('client')
-        const response = await fetch("http://localhost:3000/api/v1/comments", {
+        // localで確認する場合は以下
+        // const response = await fetch("http://localhost:3000/api/v1/comments", {
+        const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
             body: JSON.stringify({
                 text: text,
                 topic_id: topic_id
