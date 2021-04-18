@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styles from "./styles.module.sass";
 import { useRouter } from "next/router";
+import dayjs from "dayjs";
 
 const CommentDisplay = () => {
     const router = useRouter()
@@ -17,9 +18,9 @@ const CommentDisplay = () => {
     const [commentsData,changeComment] = useState<commentType>([]);
     useEffect(()=>{
         (async () => {
-            const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
+            // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
             // localで確認する場合は以下
-            // const url = `http://localhost:3000/api/v1/comments`;
+            const url = `http://localhost:3000/api/v1/comments`;
             // アクセストークンを取得しfecth実行
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
@@ -44,10 +45,12 @@ const CommentDisplay = () => {
             <div>
                 {topiccomments.map(
                     (comment: any) => {
+                        const createTime = dayjs(comment.created_at);
                         return (
                             <tr className={styles.textBox}>
                                 <td className={styles.username}>{comment.user.name}</td>
                                 <td className={styles.textarea}>{comment.text}</td>
+                                <td className={styles.commentCreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</td>
                             </tr>
                         )
                     }

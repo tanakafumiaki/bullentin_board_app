@@ -1,6 +1,7 @@
 import styles from './styles.module.sass';
 import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
+import dayjs from "dayjs";
 
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
@@ -17,9 +18,9 @@ const ArticleDisplay: React.VFC = () => {
 
     useEffect(()=>{
         if (id) {(async () => {
-            const url = `https://bullentin-board-api.herokuapp.com/api/v1/topics/${id}`
+            // const url = `https://bullentin-board-api.herokuapp.com/api/v1/topics/${id}`
             // localで確認する場合は以下
-            // const url = `http://localhost:3000/api/v1/topics/${id}`
+            const url = `http://localhost:3000/api/v1/topics/${id}`
             //アクセストークンを取得しfecth実行
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
@@ -39,9 +40,12 @@ const ArticleDisplay: React.VFC = () => {
     }},[id])
 
     if(topicData) {
+        const createTime = dayjs(topicData.created_at);
+        // console.log(createTime);
         return (
             <div className={styles.textBox}>
                 <h1 className={styles.articleTitle}>{topicData.title}</h1>
+                <p className={styles.articleCreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</p>
                 <p className={styles.articleWriter}>{topicData.user.name}</p>
                 <p className={styles.articleDetail}>{topicData.text}</p>
             </div>
