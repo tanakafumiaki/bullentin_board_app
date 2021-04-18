@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styles from "./styles.module.sass";
 import { useRouter } from "next/router";
+import dayjs from "dayjs";
 
 const CommentDisplay = () => {
     const router = useRouter()
@@ -44,10 +45,12 @@ const CommentDisplay = () => {
             <div>
                 {topiccomments.map(
                     (comment: any) => {
+                        const createTime = dayjs(comment.created_at);
                         return (
                             <tr className={styles.textBox}>
                                 <td className={styles.username}>{comment.user.name}</td>
                                 <td className={styles.textarea}>{comment.text}</td>
+                                <td className={styles.commentCreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</td>
                             </tr>
                         )
                     }

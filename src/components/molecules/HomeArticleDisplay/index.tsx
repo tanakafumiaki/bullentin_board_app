@@ -2,7 +2,7 @@ import styles from './styles.module.sass';
 import React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
+import dayjs from 'dayjs';
 
 const HomeArticleDisplay = () => {
     type topicType = any;
@@ -27,7 +27,6 @@ const HomeArticleDisplay = () => {
                 },
             })
             const response = await topicsData.json()
-
             return changeArticles(response)
         })();
     }, [])
@@ -37,11 +36,13 @@ const HomeArticleDisplay = () => {
             <div>
                 {topicsData.map(
                     (topicData: any) => {
+                        const createTime = dayjs(topicData.created_at);
                         return (
                             <Link as={`article/${topicData.id}`} href={`/article?id=${topicData.id}`}>
                                 <tr className={styles.textBox}>
                                     <td className={styles.articleWriter}>{topicData.user.name}</td>
                                     <td className={styles.articleTitle}>{topicData.title}</td>
+                                    <td className={styles.articleCreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</td>
                                 </tr>
                             </Link>
                         )
@@ -53,8 +54,9 @@ const HomeArticleDisplay = () => {
         return (
             <div>
                 <tr className={styles.textBox}>
-                    <td className={styles.articleWriter}>Roading...</td>
-                    <td className={styles.articleTitle}>Roading...</td>
+                    <td className={styles.articleWriter}>Loading...</td>
+                    <td className={styles.articleTitle}>Loading...</td>
+                    <td className={styles.articleCreateTime}>Loading...</td>
                 </tr>
             </div>
         )
