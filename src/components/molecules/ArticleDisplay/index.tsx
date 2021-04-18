@@ -53,9 +53,9 @@ const ArticleDisplay: React.VFC = () => {
     } else {
         return (
             <div className={styles.textBox}>
-                <h1 className={styles.articleTitle}>Roading...</h1>
-                <p className={styles.articleWriter}>Roading...</p>
-                <p className={styles.articleDetail}>Roading...</p>
+                <h1 className={styles.articleTitle}>Loading...</h1>
+                <p className={styles.articleWriter}>Loading...</p>
+                <p className={styles.articleDetail}>Loading...</p>
             </div>
         )
     }
