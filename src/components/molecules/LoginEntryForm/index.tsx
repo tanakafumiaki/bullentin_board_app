@@ -1,5 +1,6 @@
 import React from "react";
 import { EntryForm, PrimaryButton } from "components/atoms";
+import { RevealPasswordForm } from "components/molecules";
 import styles from "./styles.module.sass";
 import { useInput } from "hooks";
 import { useRouter } from 'next/router';
@@ -46,7 +47,7 @@ const LoginEntryForms: React.VFC = () => {
     return (
         <div className={styles.container}>
             <EntryForm text="Email" value={email} onChange={onChangeEmail} />
-            <EntryForm text="Password" value={password} onChange={onChangePassword} />
+            <RevealPasswordForm text="Password" value={password} onChange={onChangePassword} />
             <PrimaryButton text="LOGIN" onClick={onClickLogin} />
         </div>
     );

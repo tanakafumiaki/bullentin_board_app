@@ -2,7 +2,7 @@ import styles from './styles.module.sass';
 import React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import dayjs from 'dayjs';
+//import dayjs from 'dayjs';
 
 const HomeArticleDisplay = () => {
     type topicType = any;
@@ -31,7 +31,7 @@ const HomeArticleDisplay = () => {
         })();
     }, [])
 
-    if(topicsData) {
+    if (topicsData) {
         return (
             <div>
                 {topicsData.map(
