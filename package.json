@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@agney/react-loading": "^0.1.2",
     "@types/react-router-dom": "^5.1.7",
     "dayjs": "^1.10.4",
     "next": "10.0.9",

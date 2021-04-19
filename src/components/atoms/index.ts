@@ -10,3 +10,4 @@ export { default as TopicTextForm } from "./TopicTextForm";
 export { default as TitleForm } from "./TitleForm";
 export { default as SecondaryLink } from "./SecondaryLink";
 export { default as OnClickButton } from "./OnClickButton";
+export { default as Loading } from "./Loading";
