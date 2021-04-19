@@ -1,7 +1,7 @@
 import styles from './styles.module.sass';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-//import dayjs from "dayjs";
+import dayjs from "dayjs";
 
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();

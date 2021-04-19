@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.sass";
 import { useRouter } from "next/router";
-//import dayjs from "dayjs";
+import dayjs from "dayjs";
 
 const CommentDisplay = () => {
     const router = useRouter()
