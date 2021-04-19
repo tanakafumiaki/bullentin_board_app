@@ -1,5 +1,5 @@
 import styles from './styles.module.sass';
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import dayjs from "dayjs";
 
@@ -7,7 +7,7 @@ const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
     const [id, setId] = useState<number>()
     type topicType = any;
-    const [topicData,changeTopic] = useState<topicType>()
+    const [topicData, changeTopic] = useState<topicType>()
 
     useEffect(() => {
         // idがqueryで利用可能になったら処理される
@@ -16,30 +16,32 @@ const ArticleDisplay: React.VFC = () => {
         }
     }, [router]);
 
-    useEffect(()=>{
-        if (id) {(async () => {
-            const url = `https://bullentin-board-api.herokuapp.com/api/v1/topics/${id}`
-            // localで確認する場合は以下
-            // const url = `http://localhost:3000/api/v1/topics/${id}`
-            //アクセストークンを取得しfecth実行
-            const accessToken = sessionStorage.getItem('access-token');
-            const uid = sessionStorage.getItem('uid');
-            const client = sessionStorage.getItem('client')
-            const topicsData = await fetch(url,{
-                method: 'GET',
-                headers: {
-                    'access-token': `${accessToken}`,
-                    'uid': `${uid}`,
-                    'client': `${client}`,
-                    'Content-Type': 'application/json',
-                },
-            })
-            const topicData = await topicsData.json();
-            return changeTopic(topicData);
-        })();
-    }},[id])
+    useEffect(() => {
+        if (id) {
+            (async () => {
+                const url = `https://bullentin-board-api.herokuapp.com/api/v1/topics/${id}`
+                // localで確認する場合は以下
+                // const url = `http://localhost:3000/api/v1/topics/${id}`
+                //アクセストークンを取得しfecth実行
+                const accessToken = sessionStorage.getItem('access-token');
+                const uid = sessionStorage.getItem('uid');
+                const client = sessionStorage.getItem('client')
+                const topicsData = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'access-token': `${accessToken}`,
+                        'uid': `${uid}`,
+                        'client': `${client}`,
+                        'Content-Type': 'application/json',
+                    },
+                })
+                const topicData = await topicsData.json();
+                return changeTopic(topicData);
+            })();
+        }
+    }, [id])
 
-    if(topicData) {
+    if (topicData) {
         const createTime = dayjs(topicData.created_at);
         // console.log(createTime);
         return (

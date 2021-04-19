@@ -31,7 +31,7 @@ const HomeArticleDisplay = () => {
         })();
     }, [])
 
-    if(topicsData) {
+    if (topicsData) {
         return (
             <div>
                 {topicsData.map(

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.sass";
 import { useRouter } from "next/router";
 import dayjs from "dayjs";
@@ -15,8 +15,8 @@ const CommentDisplay = () => {
     }, [router]);
 
     type commentType = any;
-    const [commentsData,changeComment] = useState<commentType>([]);
-    useEffect(()=>{
+    const [commentsData, changeComment] = useState<commentType>([]);
+    useEffect(() => {
         (async () => {
             const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
             // localで確認する場合は以下
@@ -25,7 +25,7 @@ const CommentDisplay = () => {
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
             const client = sessionStorage.getItem('client');
-            const commentsData = await fetch(url,{
+            const commentsData = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'access-token': `${accessToken}`,
@@ -37,10 +37,10 @@ const CommentDisplay = () => {
             const response = await commentsData.json();
             return changeComment(response);
         })();
-    },[])
-    const topiccomments = commentsData.filter((item:any) => item.topic_id === id)
+    }, [])
+    const topiccomments = commentsData.filter((item: any) => item.topic_id === id)
 
-    if(topiccomments) {
+    if (topiccomments) {
         return (
             <div>
                 {topiccomments.map(
