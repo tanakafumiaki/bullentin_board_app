@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import dayjs from 'dayjs';
+import { Loading } from "components/atoms";
 
 const HomeArticleDisplay = () => {
     type topicType = any;
@@ -52,12 +53,8 @@ const HomeArticleDisplay = () => {
         )
     } else {
         return (
-            <div>
-                <tr className={styles.textBox}>
-                    <td className={styles.articleWriter}>Loading...</td>
-                    <td className={styles.articleTitle}>Loading...</td>
-                    <td className={styles.articleCreateTime}>Loading...</td>
-                </tr>
+            <div className={styles.loading}>
+                <Loading/>
             </div>
         )
     }

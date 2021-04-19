@@ -2,6 +2,7 @@ import styles from './styles.module.sass';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import dayjs from "dayjs";
+import { Loading } from "components/atoms";
 
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
@@ -55,9 +56,7 @@ const ArticleDisplay: React.VFC = () => {
     } else {
         return (
             <div className={styles.textBox}>
-                <h1 className={styles.articleTitle}>Loading...</h1>
-                <p className={styles.articleWriter}>Loading...</p>
-                <p className={styles.articleDetail}>Loading...</p>
+                <h1 className={styles.articleTitle}><Loading/></h1>
             </div>
         )
     }
