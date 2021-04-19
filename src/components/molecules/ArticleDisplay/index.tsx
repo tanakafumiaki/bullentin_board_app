@@ -1,8 +1,7 @@
 import styles from './styles.module.sass';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import dayjs from "dayjs";
-import { Loading } from "components/atoms";
+import { Loading, CreatedAt } from "components/atoms";
 
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
@@ -43,12 +42,10 @@ const ArticleDisplay: React.VFC = () => {
     }, [id])
 
     if (topicData) {
-        const createTime = dayjs(topicData.created_at);
-        // console.log(createTime);
         return (
             <div className={styles.textBox}>
                 <h1 className={styles.articleTitle}>{topicData.title}</h1>
-                <p className={styles.articleCreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</p>
+                <CreatedAt Data={{topicData}}/>
                 <p className={styles.articleWriter}>{topicData.user.name}</p>
                 <p className={styles.articleDetail}>{topicData.text}</p>
             </div>
