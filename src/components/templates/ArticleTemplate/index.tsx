@@ -1,6 +1,5 @@
 import React from "react";
-import { CommentDisplay } from 'components/atoms'
-import { Header, ArticleDisplay, CommentForm } from 'components/molecules'
+import { Header, ArticleDisplay, PostComment } from 'components/molecules'
 
 const ArticleTemplate: React.VFC　= () => {
     return (
@@ -8,8 +7,7 @@ const ArticleTemplate: React.VFC　= () => {
             <Header/>
             <main>
                 <ArticleDisplay/>
-                <CommentDisplay/>
-                <CommentForm/>
+                <PostComment/>
             </main>
         </div>
     )

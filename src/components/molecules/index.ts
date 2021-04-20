@@ -12,4 +12,5 @@ export { default as CommentForm } from "./AddCommentForm";
 export { default as PutPost } from "./PutPost";
 export { default as LogoutButton } from "./LogoutButton";
 export { default as RevealPasswordForm } from "./RevealPasswordForm";
-
+export { default as AddCommentForm } from "./AddCommentForm";
+export { default as PostComment } from "./PostComment";
