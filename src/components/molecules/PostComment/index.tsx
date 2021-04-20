@@ -21,9 +21,9 @@ const PostComment = () => {
 
     useEffect(() => {
         (async () => {
-            const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
+            // const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
             // localで確認する場合は以下
-            // const url = `http://localhost:3000/api/v1/comments`;
+            const url = `http://localhost:3000/api/v1/comments`;
             // アクセストークンを取得しfecth実行
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
