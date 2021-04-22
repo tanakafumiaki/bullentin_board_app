@@ -1,5 +1,6 @@
 import React from "react";
 import { BackLinkHeader, LoginEntryForms } from 'components/molecules'
+import { ValidationForm } from 'components/atoms'
 
 const LoginTemplate: React.VFC = () => {
     return (
@@ -7,6 +8,7 @@ const LoginTemplate: React.VFC = () => {
             <BackLinkHeader />
             <main>
                 <LoginEntryForms />
+                <ValidationForm />
             </main>
         </div>
     )
