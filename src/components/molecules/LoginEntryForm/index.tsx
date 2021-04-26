@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 const LoginEntryForms: React.VFC = () => {
     const [email, onChangeEmail] = useInput();
     const [password, onChangePassword] = useInput();
-    const router = useRouter();
+    //const router = useRouter();
 
     const onClickLogin = async () => {
         //const accessToken = sessionStorage.getItem('access-token');
@@ -36,9 +36,9 @@ const LoginEntryForms: React.VFC = () => {
             sessionStorage.setItem('access-token', accessToken);
             sessionStorage.setItem('client', client);
             sessionStorage.setItem('uid', uid);
-            router.push('/home');
+            //router.push('/home');
         } else {
-            router.push('/login')
+            //router.push('/login')
             alert("エラーが発生しました")
         };
     };

@@ -41,7 +41,7 @@ const HomeArticleDisplay = () => {
                                 <tr className={styles.textBox}>
                                     <td className={styles.articleWriter}>{topicData.user.name}</td>
                                     <td className={styles.articleTitle}>{topicData.title}</td>
-                                    <CreatedAt Data={{topicData}}/>
+                                    <CreatedAt Data={{ topicData }} />
                                 </tr>
                             </Link>
                         )
@@ -52,7 +52,7 @@ const HomeArticleDisplay = () => {
     } else {
         return (
             <div className={styles.loading}>
-                <Loading/>
+                <Loading />
             </div>
         )
     }
