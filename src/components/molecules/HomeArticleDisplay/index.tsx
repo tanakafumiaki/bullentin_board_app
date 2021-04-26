@@ -37,13 +37,17 @@ const HomeArticleDisplay = () => {
                 {topicsData.map(
                     (topicData: any) => {
                         return (
-                            <Link as={`article/${topicData.id}`} href={`/article?id=${topicData.id}`}>
-                                <tr className={styles.textBox}>
-                                    <td className={styles.articleWriter}>{topicData.user.name}</td>
-                                    <td className={styles.articleTitle}>{topicData.title}</td>
-                                    <CreatedAt Data={{topicData}}/>
-                                </tr>
-                            </Link>
+                            <table key={topicData.id} className={styles.textBox}>
+                                <tbody>
+                                    <Link as={`article/${topicData.id}`} href={`/article?id=${topicData.id}`}>
+                                        <tr>
+                                            <td className={styles.articleWriter}>{topicData.user.name}</td>
+                                            <td className={styles.articleTitle}>{topicData.title}</td>
+                                            <CreatedAt Data={{topicData}}/>
+                                        </tr>
+                                    </Link>
+                                </tbody>
+                            </table>
                         )
                     }
                 )}
