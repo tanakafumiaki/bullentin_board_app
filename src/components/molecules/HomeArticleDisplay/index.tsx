@@ -43,7 +43,7 @@ const HomeArticleDisplay = () => {
                                         <tr>
                                             <td className={styles.articleWriter}>{topicData.user.name}</td>
                                             <td className={styles.articleTitle}>{topicData.title}</td>
-                                            <CreatedAt Data={{topicData}}/>
+                                            <CreatedAt Data={{ topicData }} />
                                         </tr>
                                     </Link>
                                 </tbody>
@@ -56,7 +56,7 @@ const HomeArticleDisplay = () => {
     } else {
         return (
             <div className={styles.loading}>
-                <Loading/>
+                <Loading />
             </div>
         )
     }

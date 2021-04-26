@@ -6,7 +6,7 @@ interface Props {
     Data: any;
 }
 
-const CreatedAt: React.VFC<Props> = ({Data}) => {
+const CreatedAt: React.VFC<Props> = ({ Data }) => {
     const createTime = dayjs(Data.created_at);
     return (
         <td className={styles.CreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</td>

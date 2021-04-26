@@ -3,7 +3,7 @@ import styles from "./styles.module.sass";
 
 interface Props {
   text: string;
-  onClick: () => void;
+  onClick: (onClick: any) => void;
 }
 
 const PrimaryButton: React.VFC<Props> = ({ text, onClick }) => {
