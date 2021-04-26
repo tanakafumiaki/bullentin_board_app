@@ -1,7 +1,7 @@
 import styles from './styles.module.sass';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Loading, CreatedAt } from "components/atoms";
+import { Loading, CreatedAtArticle } from "components/atoms";
 
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
@@ -45,7 +45,7 @@ const ArticleDisplay: React.VFC = () => {
         return (
             <div className={styles.textBox}>
                 <h1 className={styles.articleTitle}>{topicData.title}</h1>
-                <CreatedAt Data={{topicData}}/>
+                <CreatedAtArticle Data={{topicData}}/>
                 <p className={styles.articleWriter}>{topicData.user.name}</p>
                 <p className={styles.articleDetail}>{topicData.text}</p>
             </div>
