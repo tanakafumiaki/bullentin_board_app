@@ -14,7 +14,7 @@ const PutPost: React.VFC = () => {
             const uid = sessionStorage.getItem('uid');
             const client = sessionStorage.getItem('client')
             // localで確認する場合は以下
-            //const response = await fetch("http://localhost:3000/api/v1/topics", {
+            // const response = await fetch("http://localhost:3000/api/v1/topics", {
             const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/topics", {
                 body: JSON.stringify({
                     title: title,
@@ -31,9 +31,8 @@ const PutPost: React.VFC = () => {
             if (response.status === 201) {
                 router.push({ pathname: '/home' })
             } else {
-                alert("エラーが発生しました")
+                alert("エラーが発生しました。再度投稿してください。")
             };
-            alert("問題なし")
         } else if (title == "") {
             alert("titleを記入してください")
         } else if (text == "") {
