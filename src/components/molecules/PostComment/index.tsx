@@ -42,6 +42,11 @@ const PostComment = () => {
         })();
     }, [flg])
 
+    const resetForm = () => {
+        const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
+        element.value = ""
+    };
+
     const onClickComment = async () => {
         if(text !== ""){
             const topic_id = { id }.id
@@ -64,7 +69,6 @@ const PostComment = () => {
                 method: 'POST'
             })
             if (response.status === 201) {
-                // console.log(text);
                 if (flg == "Heads") {
                     const change = "Tails";
                     return setFlg(change)
@@ -101,7 +105,8 @@ const PostComment = () => {
                 )}
                 <div className={styles.commentBox}>
                     <p className={styles.formTitle}>CommentForm</p>
-                    <AddButton onClick={onClickComment} />
+                    <AddButton text={"reset"} onClick={resetForm} />
+                    <AddButton text={"add"} onClick={onClickComment} />
                     <CommentForm value={text} onChange={onChangeComment} />
                 </div>
             </div>
