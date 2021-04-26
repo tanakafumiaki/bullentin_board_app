@@ -12,3 +12,4 @@ export { default as OnClickButton } from "./OnClickButton";
 export { default as Loading } from "./Loading";
 export { default as CreatedAt } from "./CreatedAt";
 export { default as ValidationForm } from "./ValidationForm";
+export { default as CreatedAtArticle } from "./CreatedAtArticle";
