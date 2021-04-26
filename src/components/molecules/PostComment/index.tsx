@@ -77,7 +77,7 @@ const PostComment = () => {
                     return setFlg(change)
                 }
             } else {
-                alert("エラーが発生しました")
+                alert("エラーが発生しました。再度投稿してください。")
             };
         }else{
             alert("コメントを記入してください。")
@@ -96,7 +96,7 @@ const PostComment = () => {
                                     <tr className={styles.textBox}>
                                         <td className={styles.username}>{comment.user.name}</td>
                                         <td className={styles.textarea}>{comment.text}</td>
-                                        <CreatedAt Data={{comment}}/>
+                                        <CreatedAt Data={comment}/>
                                     </tr>
                                 </tbody>
                             </table>
