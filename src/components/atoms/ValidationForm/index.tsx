@@ -61,7 +61,7 @@ const ValidationForm = () => {
             router.push('/home');
         } else {
             router.push('/login')
-            alert("ログインまたはパスワードが間違っています")
+            alert("メールアドレスまたはパスワードが間違っています")
         };
     };
 
