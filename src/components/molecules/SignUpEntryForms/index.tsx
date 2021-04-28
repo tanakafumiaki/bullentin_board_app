@@ -8,7 +8,7 @@ const SignUpEntryForms: React.VFC = () => {
     const [name, onChangeName] = useInput();
     const [email, onChangeEmail] = useInput();
     const [password, onChangePassword] = useInput();
-    const [passwordConfirmaton, onChangePasswordConfirmation] = useInput();
+    const [passwordConfirmation, onChangePasswordConfirmation] = useInput();
     const router = useRouter();
 
     const onClickSignUp = async () => {
@@ -19,7 +19,7 @@ const SignUpEntryForms: React.VFC = () => {
                 name,
                 email,
                 password,
-                passwordConfirmaton
+                passwordConfirmation
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const SignUpEntryForms: React.VFC = () => {
             <EntryForm text="Name" value={name} onChange={onChangeName} />
             <EntryForm text="Email" value={email} onChange={onChangeEmail} />
             <EntryForm text="Password" value={password} onChange={onChangePassword} />
-            <EntryForm text="PasswordConfirmation" value={passwordConfirmaton} onChange={onChangePasswordConfirmation} />
+            <EntryForm text="PasswordConfirmation" value={passwordConfirmation} onChange={onChangePasswordConfirmation} />
             <PrimaryButton text="SIGNUP" onClick={onClickSignUp} />
         </div>
     );

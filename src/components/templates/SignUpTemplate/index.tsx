@@ -1,5 +1,5 @@
 import React from "react";
-import { PrimaryButton } from 'components/atoms'
+import { SignUpValidationForm } from 'components/atoms'
 import { BackLinkHeader, SignUpEntryForms } from 'components/molecules'
 
 const SignUpTemplate: React.VFC = () => {
@@ -7,7 +7,7 @@ const SignUpTemplate: React.VFC = () => {
         <div>
             <BackLinkHeader />
             <main>
-                <SignUpEntryForms />
+                <SignUpValidationForm />
             </main>
         </div>
     )

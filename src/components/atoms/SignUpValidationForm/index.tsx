@@ -26,23 +26,27 @@ const Field: React.VFC<Props> = ({ onChange, value, label, id, error, ...rest })
 
 );
 
-const ValidationForm = () => {
+const SignUpValidationForm = () => {
+    const [name, onChangeName] = useInput();
     const [email, onChangeEmail] = useInput();
     const [password, onChangePassword] = useInput();
+    const [passwordReInput, onChangePasswordReInput] = useInput();
     const router = useRouter();
     const { form, mon } = useForm({
-        defaultValues: { email: "", password: "" },
+        defaultValues: { name: "", email: "", password: "", passwordConfirmation: "" },
         onSubmit: () => onClickLogin(),
     });
-    const errors = mon("errors", { errorWithTouched: true });
+    const errors = mon("errors", { errorWithTouched: true })
 
     const onClickLogin = async () => {
         // localで確認する場合は以下
         const response = await fetch("http://localhost:3000/api/v1/auth/sign_in", {
             //const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/auth/sign_in", {
             body: JSON.stringify({
+                name,
                 email,
-                password
+                password,
+                passwordReInput
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -69,6 +73,18 @@ const ValidationForm = () => {
     return (
         <form ref={form} noValidate>
             <Field
+                label="name"
+                id="name"
+                name="name"
+                type="neme"
+                value={name}
+                onChange={onChangeName}
+                required
+                minLength={3}
+                error={errors.name}
+
+            />
+            <Field
                 label="Email"
                 id="email"
                 name="email"
@@ -90,6 +106,20 @@ const ValidationForm = () => {
                 minLength={6}
                 error={errors.password}
             />
+            <Field
+                //ここに上記のPasswordの値を読み込ませ値が不一致の場合はエラーメッセージ表示
+                label="passwordConfirm"
+                id="password"
+                name="passwordReInput"
+                type="password"
+                value={passwordReInput}
+                onChange={onChangePasswordReInput}
+                required
+                minLength={6}
+                error={errors.passwordReInput}
+            />
+
+
             <div className={styles.wrapper}>
                 <input type="submit" className={styles.button} value={"LOGIN"} onClick={onClickLogin} />
             </div>
@@ -97,4 +127,4 @@ const ValidationForm = () => {
         </form>
     );
 };
-export default ValidationForm;
+export default SignUpValidationForm;

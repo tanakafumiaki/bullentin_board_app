@@ -19,9 +19,9 @@ const ArticleDisplay: React.VFC = () => {
     useEffect(() => {
         if (id) {
             (async () => {
-                const url = `https://bullentin-board-api.herokuapp.com/api/v1/topics/${id}`
+                //const url = `https://bullentin-board-api.herokuapp.com/api/v1/topics/${id}`
                 // localで確認する場合は以下
-                // const url = `http://localhost:3000/api/v1/topics/${id}`
+                const url = `http://localhost:3000/api/v1/topics/${id}`
                 //アクセストークンを取得しfecth実行
                 const accessToken = sessionStorage.getItem('access-token');
                 const uid = sessionStorage.getItem('uid');
@@ -45,7 +45,7 @@ const ArticleDisplay: React.VFC = () => {
         return (
             <div className={styles.textBox}>
                 <h1 className={styles.articleTitle}>{topicData.title}</h1>
-                <CreatedAt Data={{topicData}}/>
+                <CreatedAt Data={{ topicData }} />
                 <p className={styles.articleWriter}>{topicData.user.name}</p>
                 <p className={styles.articleDetail}>{topicData.text}</p>
             </div>
@@ -53,7 +53,7 @@ const ArticleDisplay: React.VFC = () => {
     } else {
         return (
             <div className={styles.textBox}>
-                <h1 className={styles.articleTitle}><Loading/></h1>
+                <h1 className={styles.articleTitle}><Loading /></h1>
             </div>
         )
     }
