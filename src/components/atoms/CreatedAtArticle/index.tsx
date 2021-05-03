@@ -6,10 +6,10 @@ interface Props {
     created_at: string;
 }
 
-const CreatedAt: React.VFC<Props> = ({ created_at }) => {
+const CreatedAtArticle: React.VFC<Props> = ({ created_at }) => {
     const createTime = dayjs(created_at);
     return (
         <p className={styles.CreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</p>
     )
 }
-export default CreatedAt;
+export default CreatedAtArticle;
