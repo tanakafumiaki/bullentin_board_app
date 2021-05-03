@@ -43,7 +43,7 @@ const PostComment = () => {
     }, [flg])
 
     const resetForm = () => {
-        const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
+        const element: HTMLFormElement = document.getElementById("commentForm") as HTMLFormElement;
         element.value = ""
     };
 
@@ -54,13 +54,9 @@ const PostComment = () => {
             const uid = sessionStorage.getItem('uid');
             const client = sessionStorage.getItem('client')
             // localで確認する場合は以下
-<<<<<<< HEAD
-            const response = await fetch("http://localhost:3000/api/v1/comments", {
-                //const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
-=======
             // const response = await fetch("http://localhost:3000/api/v1/comments", {
             const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
->>>>>>> develop
+
                 body: JSON.stringify({
                     text: text,
                     topic_id: topic_id
@@ -96,25 +92,15 @@ const PostComment = () => {
                 {topicComments.map(
                     (comment: any) => {
                         return (
-<<<<<<< HEAD
-                            <div>
-                                <tr className={styles.textBox}>
-                                    <td className={styles.username}>{comment.user.name}</td>
-                                    <td className={styles.textarea}>{comment.text}</td>
-                                    <CreatedAt Data={{ comment }} />
-                                </tr>
-                            </div>
-=======
                             <table key={comment.created_at} className={styles.table}>
                                 <tbody>
                                     <tr className={styles.textBox}>
                                         <td className={styles.username}>{comment.user.name}</td>
                                         <td className={styles.textarea}>{comment.text}</td>
-                                        <CreatedAt Data={comment}/>
+                                        <CreatedAt Data={comment} />
                                     </tr>
                                 </tbody>
                             </table>
->>>>>>> develop
                         )
                     }
                 )}
