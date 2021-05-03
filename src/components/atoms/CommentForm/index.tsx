@@ -9,7 +9,7 @@ interface Props {
 const CommentForm: React.VFC<Props> = ({ onChange, value }) => {
     return (
         <div>
-            <input className={styles.textarea} placeholder={"Add a Comment"} onChange={onChange} value={value} />
+            <input className={styles.textarea} placeholder={"Add a Comment"} onChange={onChange} value={value} id={"commentForm"}/>
         </div>
     )
 };

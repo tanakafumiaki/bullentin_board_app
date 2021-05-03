@@ -42,6 +42,11 @@ const PostComment = () => {
         })();
     }, [flg])
 
+    const resetForm = () => {
+        const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
+        element.value = ""
+    };
+
     const onClickComment = async () => {
         if (text !== "") {
             const topic_id = { id }.id
@@ -49,8 +54,13 @@ const PostComment = () => {
             const uid = sessionStorage.getItem('uid');
             const client = sessionStorage.getItem('client')
             // localで確認する場合は以下
+<<<<<<< HEAD
             const response = await fetch("http://localhost:3000/api/v1/comments", {
                 //const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
+=======
+            // const response = await fetch("http://localhost:3000/api/v1/comments", {
+            const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
+>>>>>>> develop
                 body: JSON.stringify({
                     text: text,
                     topic_id: topic_id
@@ -64,7 +74,6 @@ const PostComment = () => {
                 method: 'POST'
             })
             if (response.status === 201) {
-                // console.log(text);
                 if (flg == "Heads") {
                     const change = "Tails";
                     return setFlg(change)
@@ -73,7 +82,7 @@ const PostComment = () => {
                     return setFlg(change)
                 }
             } else {
-                alert("エラーが発生しました")
+                alert("エラーが発生しました。再度投稿してください。")
             };
         } else {
             alert("コメントを記入してください。")
@@ -87,6 +96,7 @@ const PostComment = () => {
                 {topicComments.map(
                     (comment: any) => {
                         return (
+<<<<<<< HEAD
                             <div>
                                 <tr className={styles.textBox}>
                                     <td className={styles.username}>{comment.user.name}</td>
@@ -94,12 +104,24 @@ const PostComment = () => {
                                     <CreatedAt Data={{ comment }} />
                                 </tr>
                             </div>
+=======
+                            <table key={comment.created_at} className={styles.table}>
+                                <tbody>
+                                    <tr className={styles.textBox}>
+                                        <td className={styles.username}>{comment.user.name}</td>
+                                        <td className={styles.textarea}>{comment.text}</td>
+                                        <CreatedAt Data={comment}/>
+                                    </tr>
+                                </tbody>
+                            </table>
+>>>>>>> develop
                         )
                     }
                 )}
                 <div className={styles.commentBox}>
                     <p className={styles.formTitle}>CommentForm</p>
-                    <AddButton onClick={onClickComment} />
+                    <AddButton text={"reset"} onClick={resetForm} />
+                    <AddButton text={"add"} onClick={onClickComment} />
                     <CommentForm value={text} onChange={onChangeComment} />
                 </div>
             </div>
