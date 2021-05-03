@@ -6,21 +6,21 @@ import { useRouter } from 'next/router';
 
 interface Props {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    name: any
-    type: any
-    label: any
-    id: any
-    error: any
+    name: string
+    type: string
+    label: string
+    id: string
+    error: string
     value: string
-    required: any
-    minLength: any
+    required: boolean
+    minLength: number
 }
 
-const Field: React.VFC<Props> = ({ onChange, value, label, id, error, ...rest }) => (
+const Field: React.VFC<Props> = ({ onChange, value, label, id, error, name, type, required, minLength }) => (
 
     <div className={styles.container}>
         <label htmlFor={id} className={styles.label}>{label}</label>
-        <input id={id} onChange={onChange} value={value} className={styles.textarea} {...rest} />
+        <input id={id} onChange={onChange} value={value} name={name} type={type} required={required} minLength={minLength} className={styles.textarea} />
         {error && <p>{error}</p>}
     </div>
 
@@ -30,11 +30,7 @@ const ValidationForm = () => {
     const [email, onChangeEmail] = useInput();
     const [password, onChangePassword] = useInput();
     const router = useRouter();
-    const { form, mon } = useForm({
-        defaultValues: { email: "", password: "" },
-        onSubmit: () => onClickLogin(),
-    });
-    const errors = mon("errors", { errorWithTouched: true });
+
 
     const onClickLogin = async () => {
         // localで確認する場合は以下
@@ -64,6 +60,11 @@ const ValidationForm = () => {
             alert("メールアドレスまたはパスワードが間違っています")
         };
     };
+    const { form, mon } = useForm({
+        defaultValues: { email: "", password: "" },
+        onSubmit: () => onClickLogin(),
+    });
+    const errors = mon("errors", { errorWithTouched: true });
 
 
     return (

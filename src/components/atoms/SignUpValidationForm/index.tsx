@@ -6,25 +6,25 @@ import { useRouter } from 'next/router';
 
 interface Props {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    name: any
-    type: any
-    label: any
-    id: any
-    error: any
+    name: string
+    type: string
+    label: string
+    id: string
+    error: string
     value: string
-    required: any
-    minLength: any
+    required: boolean
+    minLength: number
 }
 
-const Field: React.VFC<Props> = ({ onChange, value, label, id, error, ...rest }) => (
+const Field = React.forwardRef<HTMLInputElement, Props>((props, ref) => (
 
     <div className={styles.container}>
-        <label htmlFor={id} className={styles.label}>{label}</label>
-        <input id={id} onChange={onChange} value={value} className={styles.textarea} {...rest} />
-        {error && <p>{error}</p>}
+        <label htmlFor={props.id} className={styles.label}>{props.label}</label>
+        <input id={props.id} ref={ref} onChange={props.onChange} value={props.value} name={props.name} type={props.type} required={props.required} minLength={props.minLength} className={styles.textarea} />
+        {props.error && <p>{props.error}</p>}
     </div>
 
-);
+));
 
 const SignUpValidationForm = () => {
     const [name, onChangeName] = useInput();
@@ -32,16 +32,11 @@ const SignUpValidationForm = () => {
     const [password, onChangePassword] = useInput();
     const [passwordReInput, onChangePasswordReInput] = useInput();
     const router = useRouter();
-    const { form, mon } = useForm({
-        defaultValues: { name: "", email: "", password: "", passwordConfirmation: "" },
-        onSubmit: () => onClickLogin(),
-    });
-    const errors = mon("errors", { errorWithTouched: true })
 
-    const onClickLogin = async () => {
+    const onClickSignUp = async () => {
         // localで確認する場合は以下
-        const response = await fetch("http://localhost:3000/api/v1/auth/sign_in", {
-            //const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/auth/sign_in", {
+        const response = await fetch("http://localhost:3000/api/v1/auth", {
+            //const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/auth", {
             body: JSON.stringify({
                 name,
                 email,
@@ -64,25 +59,43 @@ const SignUpValidationForm = () => {
             sessionStorage.setItem('uid', uid);
             router.push('/home');
         } else {
-            router.push('/login')
+            router.push('/signup')
             alert("メールアドレスまたはパスワードが間違っています")
         };
     };
 
+    const validateOnServer = async (passwordReInput: any) => {
+        await new Promise((r) => setTimeout(r, 2000));
+        return passwordReInput === password;
+    };
+    const validatePasswordReInput = async (value: any) => {
+        if (!value) {
+            return "同じPasswordを入力してください";
+        } else {
+            const hasPasswordReInput = await validateOnServer(value);
+            if (!hasPasswordReInput) return "Passwordが異なっています";
+        }
+    };
+
+    const { form, mon, field } = useForm({
+        defaultValues: { name: "", email: "", password: "", passwordReInput: "" },
+        onSubmit: () => onClickSignUp(),
+    });
+
+    const errors = mon("errors", { errorWithTouched: true })
 
     return (
         <form ref={form} noValidate>
             <Field
-                label="name"
+                label="Name"
                 id="name"
                 name="name"
-                type="neme"
+                type="name"
                 value={name}
                 onChange={onChangeName}
                 required
                 minLength={3}
                 error={errors.name}
-
             />
             <Field
                 label="Email"
@@ -103,11 +116,11 @@ const SignUpValidationForm = () => {
                 value={password}
                 onChange={onChangePassword}
                 required
+
                 minLength={6}
                 error={errors.password}
             />
             <Field
-                //ここに上記のPasswordの値を読み込ませ値が不一致の場合はエラーメッセージ表示
                 label="passwordConfirm"
                 id="password"
                 name="passwordReInput"
@@ -115,13 +128,13 @@ const SignUpValidationForm = () => {
                 value={passwordReInput}
                 onChange={onChangePasswordReInput}
                 required
+                ref={field(validatePasswordReInput)}
                 minLength={6}
                 error={errors.passwordReInput}
             />
 
-
             <div className={styles.wrapper}>
-                <input type="submit" className={styles.button} value={"LOGIN"} onClick={onClickLogin} />
+                <input type="submit" className={styles.button} value={"SIGNUP"} onClick={onClickSignUp} />
             </div>
 
         </form>
