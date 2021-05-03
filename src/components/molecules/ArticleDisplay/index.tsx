@@ -45,7 +45,7 @@ const ArticleDisplay: React.VFC = () => {
         return (
             <div className={styles.textBox}>
                 <h1 className={styles.articleTitle}>{topicData.title}</h1>
-                <CreatedAtArticle Data={{ topicData }} />
+                <CreatedAtArticle Data={topicData} />
                 <p className={styles.articleWriter}>{topicData.user.name}</p>
                 <p className={styles.articleDetail}>{topicData.text}</p>
             </div>
