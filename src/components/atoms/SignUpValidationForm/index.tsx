@@ -35,8 +35,8 @@ const SignUpValidationForm = () => {
 
     const onClickSignUp = async () => {
         // localで確認する場合は以下
-        const response = await fetch("http://localhost:3000/api/v1/auth", {
-            //const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/auth", {
+        //const response = await fetch("http://localhost:3000/api/v1/auth", {
+        const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/auth", {
             body: JSON.stringify({
                 name,
                 email,
