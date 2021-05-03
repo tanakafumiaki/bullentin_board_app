@@ -6,7 +6,7 @@ import { Loading, CreatedAtArticle } from "components/atoms";
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
     const [id, setId] = useState<number>()
-    type topicType = any;
+    type topicType = {text: string, user:{name:string}, title:string, created_at: string};
     const [topicData, changeTopic] = useState<topicType>()
 
     useEffect(() => {
@@ -45,7 +45,7 @@ const ArticleDisplay: React.VFC = () => {
         return (
             <div className={styles.textBox}>
                 <h1 className={styles.articleTitle}>{topicData.title}</h1>
-                <CreatedAtArticle Data={topicData}/>
+                <CreatedAtArticle created_at={topicData.created_at}/>
                 <p className={styles.articleWriter}>{topicData.user.name}</p>
                 <p className={styles.articleDetail}>{topicData.text}</p>
             </div>

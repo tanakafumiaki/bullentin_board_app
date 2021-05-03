@@ -3,11 +3,11 @@ import React from "react";
 import dayjs from 'dayjs';
 
 interface Props {
-    Data: any;
+    created_at: string;
 }
 
-const CreatedAt: React.VFC<Props> = ({ Data }) => {
-    const createTime = dayjs(Data.created_at);
+const CreatedAt: React.VFC<Props> = ({ created_at }) => {
+    const createTime = dayjs(created_at);
     return (
         <td className={styles.CreateTime}>{createTime.format('YYYY-MM-DD HH:mm')}</td>
     )

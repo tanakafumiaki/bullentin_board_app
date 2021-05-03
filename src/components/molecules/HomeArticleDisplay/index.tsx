@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Loading, CreatedAt } from "components/atoms";
 
 const HomeArticleDisplay = () => {
-    type topicType = any;
+    type topicType = [];
     const [topicsData, changeArticles] = useState<topicType>()
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const HomeArticleDisplay = () => {
         return (
             <div>
                 {topicsData.map(
-                    (topicData: any) => {
+                    (topicData: {id: number, key: [], user:{name:string}, title:string, created_at: string}) => {
                         return (
                             <table key={topicData.id} className={styles.textBox}>
                                 <tbody>
@@ -43,7 +43,7 @@ const HomeArticleDisplay = () => {
                                         <tr>
                                             <td className={styles.articleWriter}>{topicData.user.name}</td>
                                             <td className={styles.articleTitle}>{topicData.title}</td>
-                                            <CreatedAt Data={topicData} />
+                                            <CreatedAt created_at={topicData.created_at} />
                                         </tr>
                                     </Link>
                                 </tbody>

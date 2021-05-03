@@ -8,7 +8,7 @@ const PostComment = () => {
     const [flg, setFlg] = useState("Heads");
     const router = useRouter()
     const [id, setId] = useState<number>()
-    type commentType = any;
+    type commentType = [];
     const [commentsData, changeComment] = useState<commentType>([]);
     const [text, onChangeComment] = useInput();
 
@@ -83,20 +83,20 @@ const PostComment = () => {
             alert("コメントを記入してください。")
         }
     }
-    const topicComments = commentsData.filter((item: any) => item.topic_id === id)
+    const topicComments = commentsData.filter((item: {topic_id: number, key: [], user:{name:string}, text:string}) => item.topic_id === id)
 
     if (topicComments) {
         return (
             <div>
                 {topicComments.map(
-                    (comment: any) => {
+                    (comment: {created_at: string, user:{name:string}, text:string}) => {
                         return (
                             <table key={comment.created_at} className={styles.table}>
                                 <tbody>
                                     <tr className={styles.textBox}>
                                         <td className={styles.username}>{comment.user.name}</td>
                                         <td className={styles.textarea}>{comment.text}</td>
-                                        <CreatedAt Data={comment}/>
+                                        <CreatedAt created_at={comment.created_at}/>
                                     </tr>
                                 </tbody>
                             </table>
