@@ -3,28 +3,8 @@ import styles from "./styles.module.sass";
 import React from "react";
 import { useInput } from "hooks";
 import { useRouter } from 'next/router';
+import Field from "components/atoms/Field";
 
-interface Props {
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    name: string
-    type: string
-    label: string
-    id: string
-    error: string
-    value: string
-    required: boolean
-    minLength: number
-}
-
-const Field = React.forwardRef<HTMLInputElement, Props>((props, ref) => (
-
-    <div className={styles.container}>
-        <label htmlFor={props.id} className={styles.label}>{props.label}</label>
-        <input id={props.id} ref={ref} onChange={props.onChange} value={props.value} name={props.name} type={props.type} required={props.required} minLength={props.minLength} className={styles.textarea} />
-        {props.error && <p>{props.error}</p>}
-    </div>
-
-));
 
 const SignUpValidationForm = () => {
     const [name, onChangeName] = useInput();
@@ -51,29 +31,21 @@ const SignUpValidationForm = () => {
         if (response.status === 200) {
             const { data } = await response.json();
             console.log(data);
-            const accessToken: any = response.headers.get("access-token");
-            const client: any = response.headers.get("client");
-            const uid: any = response.headers.get("uid");
-            sessionStorage.setItem('access-token', accessToken);
-            sessionStorage.setItem('client', client);
-            sessionStorage.setItem('uid', uid);
             router.push('/home');
         } else {
-            router.push('/signup')
             alert("メールアドレスまたはパスワードが間違っています")
         };
     };
 
-    const validateOnServer = async (passwordReInput: any) => {
-        await new Promise((r) => setTimeout(r, 2000));
+    const validateOnServer = async (passwordReInput: string) => {
         return passwordReInput === password;
     };
-    const validatePasswordReInput = async (value: any) => {
+    const validatePasswordReInput = async (value: string) => {
         if (!value) {
-            return "同じPasswordを入力してください";
+            return "このフィールドに入力してください";
         } else {
-            const hasPasswordReInput = await validateOnServer(value);
-            if (!hasPasswordReInput) return "Passwordが異なっています";
+            const CheckPasswordReInput = await validateOnServer(value);
+            if (!CheckPasswordReInput) return "Passwordが異なっています";
         }
     };
 
@@ -122,7 +94,7 @@ const SignUpValidationForm = () => {
             />
             <Field
                 label="passwordConfirm"
-                id="password"
+                id="passwordReInput"
                 name="passwordReInput"
                 type="password"
                 value={passwordReInput}
@@ -132,11 +104,9 @@ const SignUpValidationForm = () => {
                 minLength={6}
                 error={errors.passwordReInput}
             />
-
             <div className={styles.wrapper}>
-                <input type="submit" className={styles.button} value={"SIGNUP"} onClick={onClickSignUp} />
+                <button type="submit" className={styles.button} onClick={onClickSignUp}>SIGNUP</button>
             </div>
-
         </form>
     );
 };
