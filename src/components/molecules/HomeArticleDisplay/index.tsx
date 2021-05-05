@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Loading, CreatedAt } from "components/atoms";
 
-const HomeArticleDisplay = () => {
-    type topicType = [];
-    const [topicsData, changeArticles] = useState<topicType>()
+type TopicType = [];
 
+const HomeArticleDisplay = () => {
+    const [topicsData, changeArticles] = useState<TopicType>()
     useEffect(() => {
         (async () => {
             const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
@@ -27,7 +27,7 @@ const HomeArticleDisplay = () => {
                 },
             })
             const response = await topicsData.json()
-            return changeArticles(response)
+            changeArticles(response)
         })();
     }, [])
 

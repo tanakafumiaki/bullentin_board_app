@@ -4,19 +4,20 @@ import styles from "./styles.module.sass";
 import { AddButton, CommentForm, CreatedAt } from "components/atoms";
 import { useInput } from "hooks";
 
+type CommentType = [];
+
 const PostComment = () => {
     const [flg, setFlg] = useState("Heads");
     const router = useRouter()
     const [id, setId] = useState<number>()
-    type commentType = [];
-    const [commentsData, changeComment] = useState<commentType>([]);
+    const [commentsData, changeComment] = useState<CommentType>([]);
     const [text, setText] = useInput();
 
     // const [text, onChangeComment] = useInput();
-    // const resetForm = () => {
-    //     const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
-    //     element.value = ""
-    // };
+    const resetForm = () => {
+        const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
+        element.value = ""
+    };
 
     const onChangeComment = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log(event.target.value)
@@ -25,10 +26,10 @@ const PostComment = () => {
         setText(event)
     };
 
-    const resetForm = () => {
-        console.log(text)
-        // setText('')
-    };
+    // const resetForm = () => {
+    //     console.log(text)
+    //     setText('')
+    // };
 
     useEffect(() => {
         // idがqueryで利用可能になったら処理される
@@ -56,13 +57,13 @@ const PostComment = () => {
                 },
             });
             const response = await commentsData.json();
-            return changeComment(response);
+            changeComment(response);
         })();
     }, [flg])
 
     const onClickComment = async () => {
         if(text !== ""){
-            const topic_id = { id }.id
+            const topic_id = id
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
             const client = sessionStorage.getItem('client')
@@ -70,8 +71,8 @@ const PostComment = () => {
             // const response = await fetch("http://localhost:3000/api/v1/comments", {
             const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
                 body: JSON.stringify({
-                    text: text,
-                    topic_id: topic_id
+                    text,
+                    topic_id
                 }),
                 headers: {
                     'access-token': `${accessToken}`,
@@ -83,11 +84,9 @@ const PostComment = () => {
             })
             if (response.status === 201) {
                 if (flg == "Heads") {
-                    const change = "Tails";
-                    return setFlg(change)
+                    setFlg("Tails")
                 } else {
-                    const change = "Heads";
-                    return setFlg(change)
+                    setFlg("Heads")
                 }
             } else {
                 alert("エラーが発生しました。再度投稿してください。")

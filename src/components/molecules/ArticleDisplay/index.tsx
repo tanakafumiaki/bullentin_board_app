@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Loading, CreatedAtArticle } from "components/atoms";
 
+type TopicType = {text: string, user:{name:string}, title:string, created_at: string};
+
 const ArticleDisplay: React.VFC = () => {
     const router = useRouter();
     const [id, setId] = useState<number>()
-    type topicType = {text: string, user:{name:string}, title:string, created_at: string};
-    const [topicData, changeTopic] = useState<topicType>()
+    const [topicData, changeTopic] = useState<TopicType>()
 
     useEffect(() => {
         // idがqueryで利用可能になったら処理される
@@ -36,7 +37,7 @@ const ArticleDisplay: React.VFC = () => {
                     },
                 })
                 const topicData = await topicsData.json();
-                return changeTopic(topicData);
+                changeTopic(topicData);
             })();
         }
     }, [id])
