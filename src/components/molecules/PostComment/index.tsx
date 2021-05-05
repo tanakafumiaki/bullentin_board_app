@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import styles from "./styles.module.sass";
 import { AddButton, CommentForm, CreatedAt } from "components/atoms";
 import { useInput } from "hooks";
+import {any, string} from "prop-types";
 
 const PostComment = () => {
     const [flg, setFlg] = useState("Heads");
@@ -10,7 +11,25 @@ const PostComment = () => {
     const [id, setId] = useState<number>()
     type commentType = [];
     const [commentsData, changeComment] = useState<commentType>([]);
-    const [text, onChangeComment] = useInput();
+    const [text, setText] = useInput();
+
+    // const [text, onChangeComment] = useInput();
+    // const resetForm = () => {
+    //     const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
+    //     element.value = ""
+    // };
+
+    const onChangeComment = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.value)
+        // setText(event.target.value)
+        // console.log(event);
+        setText(event)
+    };
+
+    const resetForm = () => {
+        console.log(text)
+        // setText('')
+    };
 
     useEffect(() => {
         // idがqueryで利用可能になったら処理される
@@ -41,11 +60,6 @@ const PostComment = () => {
             return changeComment(response);
         })();
     }, [flg])
-
-    const resetForm = () => {
-        const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
-        element.value = ""
-    };
 
     const onClickComment = async () => {
         if(text !== ""){
