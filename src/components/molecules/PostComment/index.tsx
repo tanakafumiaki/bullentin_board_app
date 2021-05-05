@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import styles from "./styles.module.sass";
 import { AddButton, CommentForm, CreatedAt } from "components/atoms";
 import { useInput } from "hooks";
-import {any, string} from "prop-types";
 
 const PostComment = () => {
     const [flg, setFlg] = useState("Heads");
