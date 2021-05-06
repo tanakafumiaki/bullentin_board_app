@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import styles from "./styles.module.sass";
 import { AddButton, CommentForm, CreatedAt } from "components/atoms";
 import { useInput } from "hooks";
+import { BaseClient } from "clients";
+
+type CommentType = any;
 
 const PostComment = () => {
-    const [flg, setFlg] = useState("Heads");
     const router = useRouter()
     const [id, setId] = useState<number>()
-    type commentType = any;
-    const [commentsData, changeComment] = useState<commentType>([]);
+    const [commentsData, changeComment] = useState<CommentType>([]);
     const [text, onChangeComment] = useInput();
 
     useEffect(() => {
@@ -21,26 +22,11 @@ const PostComment = () => {
 
     useEffect(() => {
         (async () => {
-            const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
-            // localで確認する場合は以下
-            // const url = `http://localhost:3000/api/v1/comments`;
-            // アクセストークンを取得しfecth実行
-            const accessToken = sessionStorage.getItem('access-token');
-            const uid = sessionStorage.getItem('uid');
-            const client = sessionStorage.getItem('client');
-            const commentsData = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'access-token': `${accessToken}`,
-                    'uid': `${uid}`,
-                    'client': `${client}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-            const response = await commentsData.json();
-            return changeComment(response);
+            // topic idを指定してコメントをフィルタできるようにRailsの処理を変更する
+            const response = await BaseClient.getComments()
+            changeComment(response);
         })();
-    }, [flg])
+    }, [])
 
     const resetForm = () => {
         const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
@@ -49,37 +35,18 @@ const PostComment = () => {
 
     const onClickComment = async () => {
         if(text !== ""){
-            const topic_id = { id }.id
-            const accessToken = sessionStorage.getItem('access-token');
-            const uid = sessionStorage.getItem('uid');
-            const client = sessionStorage.getItem('client')
-            // localで確認する場合は以下
-            // const response = await fetch("http://localhost:3000/api/v1/comments", {
-            const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
-                body: JSON.stringify({
-                    text: text,
-                    topic_id: topic_id
-                }),
-                headers: {
-                    'access-token': `${accessToken}`,
-                    'uid': `${uid}`,
-                    'client': `${client}`,
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST'
-            })
-            if (response.status === 201) {
-                if (flg == "Heads") {
-                    const change = "Tails";
-                    return setFlg(change)
-                } else {
-                    const change = "Heads";
-                    return setFlg(change)
-                }
-            } else {
-                alert("エラーが発生しました。再度投稿してください。")
-            };
-        }else{
+          try {
+            // commentを返すようにRailsの処理を変更する
+            const comment = BaseClient.postComment({
+                    text,
+                    topic_id: id
+            });
+            
+            changeComment([...commentsData, comment]);
+          } catch {
+            alert("エラーが発生しました。再度投稿してください。")
+          }
+        } else{
             alert("コメントを記入してください。")
         }
     }

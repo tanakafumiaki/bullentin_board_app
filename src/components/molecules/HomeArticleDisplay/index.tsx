@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Loading, CreatedAt } from "components/atoms";
+import { BaseClient } from 'clients';
 
 const HomeArticleDisplay = () => {
     type topicType = any;
@@ -10,23 +11,7 @@ const HomeArticleDisplay = () => {
 
     useEffect(() => {
         (async () => {
-            const url = 'https://bullentin-board-api.herokuapp.com/api/v1/topics'
-            // localの場合は以下
-            // const url = `http://localhost:3000/api/v1/topics`
-            //アクセストークンを取得しfecth実行
-            const accessToken = sessionStorage.getItem('access-token');
-            const uid = sessionStorage.getItem('uid');
-            const client = sessionStorage.getItem('client')
-            const topicsData = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'access-token': `${accessToken}`,
-                    'uid': `${uid}`,
-                    'client': `${client}`,
-                    'Content-Type': 'application/json',
-                },
-            })
-            const response = await topicsData.json()
+            const response = await BaseClient.getTopics();
             return changeArticles(response)
         })();
     }, [])
