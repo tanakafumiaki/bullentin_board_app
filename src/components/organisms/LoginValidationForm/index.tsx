@@ -3,38 +3,12 @@ import styles from "./styles.module.sass";
 import React from "react";
 import { useInput } from "hooks";
 import { useRouter } from 'next/router';
+import Field from "components/atoms/Field";
 
-interface Props {
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    name: any
-    type: any
-    label: any
-    id: any
-    error: any
-    value: string
-    required: any
-    minLength: any
-}
-
-const Field: React.VFC<Props> = ({ onChange, value, label, id, error, ...rest }) => (
-
-    <div className={styles.container}>
-        <label htmlFor={id} className={styles.label}>{label}</label>
-        <input id={id} onChange={onChange} value={value} className={styles.textarea} {...rest} />
-        {error && <p>{error}</p>}
-    </div>
-
-);
-
-const ValidationForm = () => {
+const LoginValidationForm = () => {
     const [email, onChangeEmail] = useInput();
     const [password, onChangePassword] = useInput();
     const router = useRouter();
-    const { form, mon } = useForm({
-        defaultValues: { email: "", password: "" },
-        onSubmit: () => onClickLogin(),
-    });
-    const errors = mon("errors", { errorWithTouched: true });
 
     const onClickLogin = async () => {
         // localで確認する場合は以下
@@ -51,7 +25,7 @@ const ValidationForm = () => {
         })
         if (response.status === 200) {
             const { data } = await response.json();
-            console.log(data);
+            (data);
             const accessToken: any = response.headers.get("access-token");
             const client: any = response.headers.get("client");
             const uid: any = response.headers.get("uid");
@@ -60,10 +34,14 @@ const ValidationForm = () => {
             sessionStorage.setItem('uid', uid);
             router.push('/home');
         } else {
-            router.push('/login')
             alert("メールアドレスまたはパスワードが間違っています")
         };
     };
+    const { form, mon } = useForm({
+        defaultValues: { email: "", password: "" },
+        onSubmit: () => onClickLogin(),
+    });
+    const errors = mon("errors", { errorWithTouched: true });
 
 
     return (
@@ -91,10 +69,10 @@ const ValidationForm = () => {
                 error={errors.password}
             />
             <div className={styles.wrapper}>
-                <input type="submit" className={styles.button} value={"LOGIN"} onClick={onClickLogin} />
+                <button type="submit" className={styles.button} onClick={onClickLogin}>LOGIN</button>
             </div>
 
         </form>
     );
 };
-export default ValidationForm;
+export default LoginValidationForm;

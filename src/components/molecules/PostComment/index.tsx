@@ -23,7 +23,7 @@ const PostComment = () => {
         (async () => {
             const url = 'https://bullentin-board-api.herokuapp.com/api/v1/comments'
             // localで確認する場合は以下
-            // const url = `http://localhost:3000/api/v1/comments`;
+            //const url = `http://localhost:3000/api/v1/comments`;
             // アクセストークンを取得しfecth実行
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
@@ -43,12 +43,12 @@ const PostComment = () => {
     }, [flg])
 
     const resetForm = () => {
-        const element:HTMLFormElement = document.getElementById( "commentForm" ) as HTMLFormElement;
+        const element: HTMLFormElement = document.getElementById("commentForm") as HTMLFormElement;
         element.value = ""
     };
 
     const onClickComment = async () => {
-        if(text !== ""){
+        if (text !== "") {
             const topic_id = { id }.id
             const accessToken = sessionStorage.getItem('access-token');
             const uid = sessionStorage.getItem('uid');
@@ -56,6 +56,7 @@ const PostComment = () => {
             // localで確認する場合は以下
             // const response = await fetch("http://localhost:3000/api/v1/comments", {
             const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/comments", {
+
                 body: JSON.stringify({
                     text: text,
                     topic_id: topic_id
@@ -79,7 +80,7 @@ const PostComment = () => {
             } else {
                 alert("エラーが発生しました。再度投稿してください。")
             };
-        }else{
+        } else {
             alert("コメントを記入してください。")
         }
     }
@@ -96,7 +97,7 @@ const PostComment = () => {
                                     <tr className={styles.textBox}>
                                         <td className={styles.username}>{comment.user.name}</td>
                                         <td className={styles.textarea}>{comment.text}</td>
-                                        <CreatedAt Data={comment}/>
+                                        <CreatedAt Data={comment} />
                                     </tr>
                                 </tbody>
                             </table>

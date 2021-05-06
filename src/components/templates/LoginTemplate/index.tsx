@@ -1,13 +1,13 @@
 import React from "react";
-import { BackLinkHeader } from 'components/molecules'
-import { ValidationForm } from 'components/atoms'
+import { BackLinkHeader } from 'components/molecules';
+import { LoginValidationForm } from "components/organisms";
 
 const LoginTemplate: React.VFC = () => {
     return (
         <div>
             <BackLinkHeader />
             <main>
-                <ValidationForm />
+                <LoginValidationForm />
             </main>
         </div>
     )

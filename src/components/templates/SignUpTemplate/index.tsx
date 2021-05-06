@@ -1,13 +1,13 @@
 import React from "react";
-import { PrimaryButton } from 'components/atoms'
-import { BackLinkHeader, SignUpEntryForms } from 'components/molecules'
+import { SignUpValidationForm } from "components/organisms";
+import { BackLinkHeader } from 'components/molecules';
 
 const SignUpTemplate: React.VFC = () => {
     return (
         <div>
             <BackLinkHeader />
             <main>
-                <SignUpEntryForms />
+                <SignUpValidationForm />
             </main>
         </div>
     )

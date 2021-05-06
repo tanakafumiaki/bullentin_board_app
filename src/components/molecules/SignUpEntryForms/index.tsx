@@ -8,18 +8,18 @@ const SignUpEntryForms: React.VFC = () => {
     const [name, onChangeName] = useInput();
     const [email, onChangeEmail] = useInput();
     const [password, onChangePassword] = useInput();
-    const [passwordConfirmaton, onChangePasswordConfirmation] = useInput();
+    const [passwordConfirmation, onChangePasswordConfirmation] = useInput();
     const router = useRouter();
 
     const onClickSignUp = async () => {
         // localで確認する場合は以下
-        // const response = await fetch("http://localhost:3000/api/v1/auth", {
-        const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/auth", {
+        const response = await fetch("http://localhost:3000/api/v1/auth", {
+            //const response = await fetch("https://bullentin-board-api.herokuapp.com/api/v1/auth", {
             body: JSON.stringify({
                 name,
                 email,
                 password,
-                passwordConfirmaton
+                passwordConfirmation
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const SignUpEntryForms: React.VFC = () => {
             <EntryForm text="Name" value={name} onChange={onChangeName} />
             <EntryForm text="Email" value={email} onChange={onChangeEmail} />
             <EntryForm text="Password" value={password} onChange={onChangePassword} />
-            <EntryForm text="PasswordConfirmation" value={passwordConfirmaton} onChange={onChangePasswordConfirmation} />
+            <EntryForm text="PasswordConfirmation" value={passwordConfirmation} onChange={onChangePasswordConfirmation} />
             <PrimaryButton text="SIGNUP" onClick={onClickSignUp} />
         </div>
     );
